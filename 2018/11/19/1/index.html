@@ -108,23 +108,39 @@
 
 
 
-  <meta name="description" content="Stay hungry, stay foolish.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zekang Li&#39;s Blog">
-<meta property="og:url" content="https://lizekang.github.io/index.html">
+  <meta name="description" content="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》 最近在研究多视角数据增强的方法，读到了这一篇，感觉思想很重要 \   这篇文章是IJCAI2017的最佳学生论文，简称TD-GAN，用于从单个输入图像中提取可分解的特征，并通过调整所学特征来重新渲染图像。\   附上链接：https://">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记">
+<meta property="og:url" content="https://lizekang.github.io/2018/11/19/1/index.html">
 <meta property="og:site_name" content="Zekang Li&#39;s Blog">
-<meta property="og:description" content="Stay hungry, stay foolish.">
+<meta property="og:description" content="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》 最近在研究多视角数据增强的方法，读到了这一篇，感觉思想很重要 \   这篇文章是IJCAI2017的最佳学生论文，简称TD-GAN，用于从单个输入图像中提取可分解的特征，并通过调整所学特征来重新渲染图像。\   附上链接：https://">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541148671827-ffdb82c2-f8d6-487a-86cf-10f6cf3c490c-image-resized.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149687254-f4de0d54-b59b-47c2-8f29-b6a274d170b2-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149697379-231aa761-1d37-4bab-81fc-72bcf7a553d7-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149707361-dd76a590-633c-43bd-956b-e942b30e0e5a-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149716175-4894adff-1e9b-4f2d-a7c3-67c8913ba5a2-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149737248-5050c717-05b0-4034-8859-5f32aab07d4d-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149745460-0f3c071d-e9cf-49f4-8c40-0b59ad8da7ef-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149754886-00ac8a97-4843-4ece-80fd-0dc3e84f9f9e-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149762921-706d4983-ec97-48e6-8696-f4f0dc1f67b5-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149883166-db41c557-2d34-4785-998d-542aa2ce737c-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149892729-14ba550e-772a-445c-8ceb-42dae0d8ff58-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149948275-8965ff18-c92b-4159-9be3-0c4ea99a3e43-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149958343-d5d2357b-9f08-48a8-9c50-b1f27cfd6626-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149977353-7e7fc577-811b-49d5-bc14-14ac3fc81533-image.png">
+<meta property="og:updated_time" content="2018-11-19T06:48:40.719Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zekang Li&#39;s Blog">
-<meta name="twitter:description" content="Stay hungry, stay foolish.">
+<meta name="twitter:title" content="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记">
+<meta name="twitter:description" content="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》 最近在研究多视角数据增强的方法，读到了这一篇，感觉思想很重要 \   这篇文章是IJCAI2017的最佳学生论文，简称TD-GAN，用于从单个输入图像中提取可分解的特征，并通过调整所学特征来重新渲染图像。\   附上链接：https://">
+<meta name="twitter:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541148671827-ffdb82c2-f8d6-487a-86cf-10f6cf3c490c-image-resized.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://lizekang.github.io/">
+  <link rel="canonical" href="https://lizekang.github.io/2018/11/19/1/">
 
 
 
@@ -134,7 +150,7 @@
   };
 </script>
 
-  <title>Zekang Li's Blog</title>
+  <title>《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记 | Zekang Li's Blog</title>
   
 
 
@@ -183,8 +199,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -221,7 +236,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
     <a href="/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
   </li>
@@ -297,9 +312,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -331,11 +346,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/19/1/" itemprop="url">
-                  《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记
-                </a>
+          <h1 class="post-title" itemprop="name headline">《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记
               
             
           </h1>
@@ -416,9 +427,7 @@
       
 
       
-        
-          
-            <h1 id="《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》"><a href="#《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》" class="headerlink" title="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》"></a>《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》</h1><blockquote>
+        <h1 id="《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》"><a href="#《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》" class="headerlink" title="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》"></a>《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》</h1><blockquote>
 <p>最近在研究多视角数据增强的方法，读到了这一篇，感觉思想很重要 \</p>
 </blockquote>
 <blockquote>
@@ -480,8 +489,6 @@
 <h2 id="多视角数据增强"><a href="#多视角数据增强" class="headerlink" title="多视角数据增强"></a><strong>多视角数据增强</strong></h2><p>我们目前做的多视角图片数据增强和TD-GAN又有一些不同。TD-GAN仅仅是在chairs这个dataset上产生了很好的效果，不过，试想，当一个物体较为复杂的时候，不可能根据一张图片生成这么完美的图像，那我们怎样产生多视角图像呢？</p>
 <p>这恰恰是我们正在研究的内容，我们在探究一种让网络学会融合各视角的图像，如何使网络将各视角的图像组合起来，在“大脑”中构思出这个物体的“3d模型”。这其实是多视角学习，多模态学习很关键的一步。</p>
 
-          
-        
       
     </div>
 
@@ -494,6 +501,41 @@
     
 
     
+      <div>
+          
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2018/11/19/1/">《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Zekang Li 的个人博客">Zekang Li</a></p>
+  <p><span>发布时间:</span>2018年11月19日 - 14:11</p>
+  <p><span>最后更新:</span>2018年11月19日 - 14:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/19/1/" title="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记">https://lizekang.github.io/2018/11/19/1/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lizekang.github.io/2018/11/19/1/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+
+      </div>
+    
 
     
 
@@ -503,158 +545,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lizekang.github.io/2018/11/19/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zekang Li">
-      <meta itemprop="description" content="Stay hungry, stay foolish.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zekang Li's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/19/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2018/11/19/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-19 13:24:36" itemprop="dateCreated datePublished" datetime="2018-11-19T13:24:36+08:00">2018-11-19</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -664,14 +576,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -692,8 +605,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -767,6 +689,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》"><span class="nav-number">1.</span> <span class="nav-text">《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Architecture"><span class="nav-number">1.2.</span> <span class="nav-text">Network Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络训练策略"><span class="nav-number">1.3.</span> <span class="nav-text">网络训练策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络参数设置"><span class="nav-number">1.4.</span> <span class="nav-text">网络参数设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#惊艳的实验结果"><span class="nav-number">1.5.</span> <span class="nav-text">惊艳的实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一点思考"><span class="nav-number">1.6.</span> <span class="nav-text">一点思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多视角数据增强"><span class="nav-number">1.7.</span> <span class="nav-text">多视角数据增强</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -904,6 +842,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
 
   
 
@@ -945,12 +887,6 @@
   
 
   
-  
-    
-      
-    
-      
-    
   
 
   
