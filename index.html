@@ -360,7 +360,7 @@
                 
               
 
-              <time title="创建时间：2018-11-19 14:53:26 / 修改时间：15:06:28" itemprop="dateCreated datePublished" datetime="2018-11-19T14:53:26+08:00">2018-11-19</time>
+              <time title="创建时间：2018-11-19 14:53:26 / 修改时间：15:09:21" itemprop="dateCreated datePublished" datetime="2018-11-19T14:53:26+08:00">2018-11-19</time>
             
 
             
@@ -410,9 +410,11 @@
 <ol>
 <li>图片与问题特征提取<br> 这边用的方法比较传统。对问题，通过双向LSTM去提取特征；对于图片，使用VGG等预训练模型提取特征。</li>
 <li>图片与问题特征融合（Co-Attention）<br> 这里借鉴了2016年NIPS一篇论文<a href="https://arxiv.org/pdf/1606.00061.pdf" target="_blank" rel="noopener">《Hierarchical Question-Image Co-Attention for Visual Question Answering》</a><br> <img src="https://note.youdao.com/yws/res/597/4DD67B95E9884D2DAA73A724A9591938" alt="image"><br> 方法比较简单，直接上公式了<br> <img src="https://note.youdao.com/yws/res/607/C34613DA52FA4D3FB51C4807DD62C6C9" alt="image"><br> <img src="https://note.youdao.com/yws/res/611/558441BEC8B84479BAD54ECD1E557E58" alt="image"><br> <img src="https://note.youdao.com/yws/res/613/37F4C82258974B848743F4CA5F57ECA3" alt="image"></li>
-<li>记忆增强网络<br> 这个模块算是这篇文章的亮点吧，在之江杯视频问答中我复现了这个模块，但是效果不是很好:(<br> 在这个模块中用了一个LSTM网络做Controller，以及一个External Memory $M$<br> 在训练过程中，对于所有训练数据${x_{t}, y_{t}}; t= 1…T$,把$x_{t}$丢进controller里面去得到一个query $h_{t}$<br> $$h_{t} = LSTM(x_{t}, h_{t-1})$$<br> 之后通过这个query去从Memory中读取信息<br> $$D(h_{t}, M_{t}(i)) = \frac{h_{t}\cdot M_{t}(i)}{|h_{t}||M_{t}(i)|}$$<br> $$w^{r}<em>{t} = softmax(D(h</em>{t}, M_{t}(i)))$$<br> $$r_{t} = \sum_{i} w^{r}<em>(t)(i)M</em>{i}$$<blockquote>
-<p>we would like the writer to strike a balance between writing new information to rarely used location and writing to recently used location<br> 这里，作者提出了一种平衡低频memory和高频memory的读写的方法。<br> $$w^{u}<em>{t} = \gamma w^{u}</em>{t-1} + w_{t}^{r} + w_{t}^{w}$$<br> $$w^{w}<em>{t} = (1 - \sigma(\alpha))w^{r}</em>{t-1} + (1-\sigma(\alpha))1(w_{t-1}^{u}\leqslant m(w_{t-1}^{u}, n))$$<br> $$M_{t}^{i} = M_{t-1}^{i} + w_{t}^{w}*h_{t}$$<br> 注意：这边的$\alpha$是learnable的，来控制低频和高频的使用频率。<br> 最后把$r_{t}$ 和 $h_{t}$拼接起来丢到分类器里面。</p>
+<li><p>记忆增强网络<br> 这个模块算是这篇文章的亮点吧，在之江杯视频问答中我复现了这个模块，但是效果不是很好:(<br> 在这个模块中用了一个LSTM网络做Controller，以及一个External Memory $M$<br> 在训练过程中，对于所有训练数据${x_{t}, y_{t}}; t= 1…T$,把$x_{t}$丢进controller里面去得到一个query $h_{t}$<br> $$h_{t} = LSTM(x_{t}, h_{t-1})$$<br> 之后通过这个query去从Memory中读取信息<br> $$ D(h_{t}, M_{t}(i)) = \frac{h_{t}\cdot M_{t}(i)}{|h_{t}||M_{t}(i)|} $$<br> $$ w^{r}<em>{t} = softmax(D(h</em>{t}, M_{t}(i))) $$<br> $$ r_{t} = \sum_{i} w^{r}<em>(t)(i)M</em>{i} $$</p>
+<blockquote>
+<p>we would like the writer to strike a balance between writing new information to rarely used location and writing to recently used location</p>
 </blockquote>
+<p> 这里，作者提出了一种平衡低频memory和高频memory的读写的方法。<br> $$ w^{u}<em>{t} = \gamma w^{u}</em>{t-1} + w_{t}^{r} + w_{t}^{w} $$<br> $$ w^{w}<em>{t} = (1 - \sigma(\alpha))w^{r}</em>{t-1} + (1-\sigma(\alpha))1(w_{t-1}^{u}\leqslant m(w_{t-1}^{u}, n)) $$<br> $$ M_{t}^{i} = M_{t-1}^{i} + w_{t}^{w}*h_{t} $$<br> 注意：这边的$\alpha$是learnable的，来控制低频和高频的使用频率。<br> 最后把$r_{t}$ 和 $h_{t}$拼接起来丢到分类器里面。</p>
 </li>
 </ol>
 </li>
