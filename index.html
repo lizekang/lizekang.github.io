@@ -362,7 +362,7 @@
                 
               
 
-              <time title="创建时间：2018-11-19 17:37:23 / 修改时间：20:03:58" itemprop="dateCreated datePublished" datetime="2018-11-19T17:37:23+08:00">2018-11-19</time>
+              <time title="创建时间：2018-11-19 17:37:23 / 修改时间：20:07:37" itemprop="dateCreated datePublished" datetime="2018-11-19T17:37:23+08:00">2018-11-19</time>
             
 
             
@@ -442,7 +442,7 @@
 <li>10%的概率不替换 , my dog is hairy → my dog is hairy （这个我猜可能是为了让模型学到正常理解方式，而非完型填空的理解方式）</li>
 </ul>
 <h4 id="Task-2：-Next-Sentence-Prediction"><a href="#Task-2：-Next-Sentence-Prediction" class="headerlink" title="Task #2： Next Sentence Prediction"></a>Task #2： Next Sentence Prediction</h4><p>输入一个句子对，来预测第二个句子是不是第一个句子的下一句，学习句子之间的逻辑关系</p>
-<h3 id="Fine-tuning-Procedure"><a href="#Fine-tuning-Procedure" class="headerlink" title="Fine-tuning Procedure"></a>Fine-tuning Procedure</h3><p><img src="/images/bert3.png" alt="image"><br>最后，一般自监督模型的泛化能力是比较强的，BERT从头到尾都是自监督<br>还有模型简直太大了，不是大公司根本训练不起…<br>不过用用预训练词向量还是可以的<a href="https://github.com/google-research/bert，目前支持英文，中文（很难受，只有字），其他的语言（不清楚有哪些）" target="_blank" rel="noopener">https://github.com/google-research/bert，目前支持英文，中文（很难受，只有字），其他的语言（不清楚有哪些）</a><br>应该是有史以来最好的TPU推广广告吧…</p>
+<h3 id="Fine-tuning-Procedure"><a href="#Fine-tuning-Procedure" class="headerlink" title="Fine-tuning Procedure"></a>Fine-tuning Procedure</h3><p><img src="/images/bert3.png" alt="image"><br>最后，一般自监督模型的泛化能力是比较强的，BERT从头到尾都是自监督<br>还有模型简直太大了，不是大公司根本训练不起…<br>不过用用预训练词向量还是可以的<a href="https://github.com/google-research/bert" target="_blank" rel="noopener">https://github.com/google-research/bert</a>   目前支持英文，中文（很难受，只有字），其他的语言（不清楚有哪些）<br>应该是有史以来最好的TPU推广广告吧…</p>
 
           
         
@@ -544,7 +544,7 @@
                 
               
 
-              <time title="创建时间：2018-11-19 14:53:26 / 修改时间：15:36:25" itemprop="dateCreated datePublished" datetime="2018-11-19T14:53:26+08:00">2018-11-19</time>
+              <time title="创建时间：2018-11-19 14:53:26 / 修改时间：20:12:26" itemprop="dateCreated datePublished" datetime="2018-11-19T14:53:26+08:00">2018-11-19</time>
             
 
             
@@ -608,10 +608,10 @@
 <ol>
 <li><p><strong>Abstract</strong><br> 在传统的VQA问题中，我们采用梯度下降来更新模型，这种更新方式会使模型预测更倾向于高频答案，本篇论文采用Memory Augmented Network的方法来增加对低频答案的识别率。</p>
 </li>
-<li><p><strong>论文整体框架</strong><br><img src="https://note.youdao.com/yws/res/554/636430EE8FCB47B6A9B00A78D8FF3B4E" alt="image"><br>主要分为三个部分：图片与问题特征提取，图片和问题特征融合（Co-attention），记忆增强网络。</p>
+<li><p><strong>论文整体框架</strong><br><img src="/images/VQAMAN1.png" alt="image"><br>主要分为三个部分：图片与问题特征提取，图片和问题特征融合（Co-attention），记忆增强网络。</p>
 <ol>
 <li>图片与问题特征提取<br> 这边用的方法比较传统。对问题，通过双向LSTM去提取特征；对于图片，使用VGG等预训练模型提取特征。</li>
-<li>图片与问题特征融合（Co-Attention）<br> 这里借鉴了2016年NIPS一篇论文<a href="https://arxiv.org/pdf/1606.00061.pdf" target="_blank" rel="noopener">《Hierarchical Question-Image Co-Attention for Visual Question Answering》</a><br> <img src="https://note.youdao.com/yws/res/597/4DD67B95E9884D2DAA73A724A9591938" alt="image"><br> 方法比较简单，直接上公式了<br> <img src="https://note.youdao.com/yws/res/607/C34613DA52FA4D3FB51C4807DD62C6C9" alt="image"><br> <img src="https://note.youdao.com/yws/res/611/558441BEC8B84479BAD54ECD1E557E58" alt="image"><br> <img src="https://note.youdao.com/yws/res/613/37F4C82258974B848743F4CA5F57ECA3" alt="image"></li>
+<li>图片与问题特征融合（Co-Attention）<br> 这里借鉴了2016年NIPS一篇论文<a href="https://arxiv.org/pdf/1606.00061.pdf" target="_blank" rel="noopener">《Hierarchical Question-Image Co-Attention for Visual Question Answering》</a><br> <img src="/images/VQAMAN2.png" alt="image"><br> 方法比较简单，直接上公式了<br> <img src="/images/VQAMAN3.png" alt="image"><br> <img src="/images/VQAMAN4.png" alt="image"><br> <img src="/images/VQAMAN5.png" alt="image"></li>
 <li><p>记忆增强网络<br> 这个模块算是这篇文章的亮点吧，在之江杯视频问答中我复现了这个模块，但是效果不是很好:(<br> 在这个模块中用了一个LSTM网络做Controller，以及一个External Memory $M$<br> 在训练过程中，对于所有训练数据${x_{t}, y_{t}}; t= 1…T$,把$x_{t}$丢进controller里面去得到一个query $h_{t}$<br> $$ h_{t} = LSTM(x_{t}, h_{t-1}) $$<br> 之后通过这个query去从Memory中读取信息<br> $$ D(h_{t}, M_{t}(i)) = \frac{h_{t}\cdot M_{t}(i)}{|h_{t}||M_{t}(i)|} $$<br> $$ w^{r}<em>{t} = softmax(D(h</em>{t}, M_{t}(i))) $$<br> $$ r_{t} = \sum_{i} w^{r}<em>{t}(i)M</em>{i} $$</p>
 <blockquote>
 <p>we would like the writer to strike a balance between writing new information to rarely used location and writing to recently used location</p>
