@@ -108,17 +108,24 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="《Visual Question Answering with Memory-Augmented Networks》 前段时间比赛所需，读了一些关于VQA（Visual Question and Answering）的论文，这篇文章是CVPR2018的一篇文章，亮点在于使用了Memory-Augmented Networks来增加模型对低频答案的识别率。   Abstract 在传统的VQA问题中">
+<meta name="keywords" content="VideoQA,Memory Network">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://lizekang.github.io/2017/10/01/hello-world/index.html">
+<meta property="og:title" content="《Visual Question Answering with Memory-Augmented Networks》阅读笔记">
+<meta property="og:url" content="https://lizekang.github.io/2018/11/19/《Visual-Question-Answering-with-Memory-Augmented-Networks》阅读笔记/index.html">
 <meta property="og:site_name" content="Zekang Li&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="《Visual Question Answering with Memory-Augmented Networks》 前段时间比赛所需，读了一些关于VQA（Visual Question and Answering）的论文，这篇文章是CVPR2018的一篇文章，亮点在于使用了Memory-Augmented Networks来增加模型对低频答案的识别率。   Abstract 在传统的VQA问题中">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-19T07:42:04.352Z">
+<meta property="og:image" content="https://lizekang.github.io/images/VQAMAN1.png">
+<meta property="og:image" content="https://lizekang.github.io/images/VQAMAN2.png">
+<meta property="og:image" content="https://lizekang.github.io/images/VQAMAN3.png">
+<meta property="og:image" content="https://lizekang.github.io/images/VQAMAN4.png">
+<meta property="og:image" content="https://lizekang.github.io/images/VQAMAN5.png">
+<meta property="og:updated_time" content="2018-11-20T03:12:11.998Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="《Visual Question Answering with Memory-Augmented Networks》阅读笔记">
+<meta name="twitter:description" content="《Visual Question Answering with Memory-Augmented Networks》 前段时间比赛所需，读了一些关于VQA（Visual Question and Answering）的论文，这篇文章是CVPR2018的一篇文章，亮点在于使用了Memory-Augmented Networks来增加模型对低频答案的识别率。   Abstract 在传统的VQA问题中">
+<meta name="twitter:image" content="https://lizekang.github.io/images/VQAMAN1.png">
 
 
 
@@ -127,7 +134,7 @@
 
 
 
-  <link rel="canonical" href="https://lizekang.github.io/2017/10/01/hello-world/">
+  <link rel="canonical" href="https://lizekang.github.io/2018/11/19/《Visual-Question-Answering-with-Memory-Augmented-Networks》阅读笔记/">
 
 
 
@@ -137,7 +144,7 @@
   };
 </script>
 
-  <title>Hello World | Zekang Li's Blog</title>
+  <title>《Visual Question Answering with Memory-Augmented Networks》阅读笔记 | Zekang Li's Blog</title>
   
 
 
@@ -316,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lizekang.github.io/2017/10/01/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://lizekang.github.io/2018/11/19/《Visual-Question-Answering-with-Memory-Augmented-Networks》阅读笔记/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zekang Li">
@@ -333,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">《Visual Question Answering with Memory-Augmented Networks》阅读笔记
               
             
           </h1>
@@ -358,7 +365,7 @@
                 
               
 
-              <time title="创建时间：2017-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-01T00:00:00+08:00">2017-10-01</time>
+              <time title="创建时间：2018-11-19 14:53:26" itemprop="dateCreated datePublished" datetime="2018-11-19T14:53:26+08:00">2018-11-19</time>
             
 
             
@@ -375,11 +382,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-19 15:42:04" itemprop="dateModified" datetime="2018-11-19T15:42:04+08:00">2018-11-19</time>
+                <time title="修改时间：2018-11-20 11:12:11" itemprop="dateModified" datetime="2018-11-20T11:12:11+08:00">2018-11-20</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -408,15 +433,30 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h2 id="《Visual-Question-Answering-with-Memory-Augmented-Networks》"><a href="#《Visual-Question-Answering-with-Memory-Augmented-Networks》" class="headerlink" title="《Visual Question Answering with Memory-Augmented Networks》"></a>《Visual Question Answering with Memory-Augmented Networks》</h2><blockquote>
+<p>前段时间比赛所需，读了一些关于VQA（Visual Question and Answering）的论文，这篇文章是CVPR2018的一篇文章，亮点在于使用了Memory-Augmented Networks来增加模型对低频答案的识别率。</p>
+</blockquote>
+<ol>
+<li><p><strong>Abstract</strong><br> 在传统的VQA问题中，我们采用梯度下降来更新模型，这种更新方式会使模型预测更倾向于高频答案，本篇论文采用Memory Augmented Network的方法来增加对低频答案的识别率。</p>
+</li>
+<li><p><strong>论文整体框架</strong><br><img src="/images/VQAMAN1.png" alt="image"><br>主要分为三个部分：图片与问题特征提取，图片和问题特征融合（Co-attention），记忆增强网络。</p>
+<ol>
+<li>图片与问题特征提取<br> 这边用的方法比较传统。对问题，通过双向LSTM去提取特征；对于图片，使用VGG等预训练模型提取特征。</li>
+<li>图片与问题特征融合（Co-Attention）<br> 这里借鉴了2016年NIPS一篇论文<a href="https://arxiv.org/pdf/1606.00061.pdf" target="_blank" rel="noopener">《Hierarchical Question-Image Co-Attention for Visual Question Answering》</a><br> <img src="/images/VQAMAN2.png" alt="image"><br> 方法比较简单，直接上公式了<br> <img src="/images/VQAMAN3.png" alt="image"><br> <img src="/images/VQAMAN4.png" alt="image"><br> <img src="/images/VQAMAN5.png" alt="image"></li>
+<li><p>记忆增强网络<br> 这个模块算是这篇文章的亮点吧，在之江杯视频问答中我复现了这个模块，但是效果不是很好:(<br> 在这个模块中用了一个LSTM网络做Controller，以及一个External Memory $M$<br> 在训练过程中，对于所有训练数据${x_{t}, y_{t}}; t= 1…T$,把$x_{t}$丢进controller里面去得到一个query $h_{t}$<br> $$ h_{t} = LSTM(x_{t}, h_{t-1}) $$<br> 之后通过这个query去从Memory中读取信息<br> $$ D(h_{t}, M_{t}(i)) = \frac{h_{t}\cdot M_{t}(i)}{|h_{t}||M_{t}(i)|} $$<br> $$ w^{r}<em>{t} = softmax(D(h</em>{t}, M_{t}(i))) $$<br> $$ r_{t} = \sum_{i} w^{r}<em>{t}(i)M</em>{i} $$</p>
+<blockquote>
+<p>we would like the writer to strike a balance between writing new information to rarely used location and writing to recently used location</p>
+</blockquote>
+<p> 这里，作者提出了一种平衡低频memory和高频memory的读写的方法。<br> $$ w^{u}<em>{t} = \gamma w^{u}</em>{t-1} + w_{t}^{r} + w_{t}^{w} $$<br> $$ w^{w}<em>{t} = (1 - \sigma(\alpha))w^{r}</em>{t-1} + (1-\sigma(\alpha))1(w_{t-1}^{u}\leqslant m(w_{t-1}^{u}, n)) $$<br> $$ M_{t}^{i} = M_{t-1}^{i} + w_{t}^{w}*h_{t} $$<br> 注意：这边的$\alpha$是learnable的，来控制低频和高频的使用频率。<br> 最后把$r_{t}$ 和 $h_{t}$拼接起来丢到分类器里面。</p>
+</li>
+</ol>
+</li>
+<li>Summary</li>
+</ol>
+<ul>
+<li>这篇论文其实看懂了非常好理解，理论上可以一定程度上解决数据分布不平衡导致模型更倾向于预测高频答案的问题。但是这个模型我一直没有调好，不清楚是因为什么问题。</li>
+<li>最近Memory Network很火，主要是因为它模拟人的记忆，使用更少的样本就可以达到相同的效果，也就是Meta-learning的思想，什么One-shot， Zero-shot之类的。</li>
+</ul>
 
       
     </div>
@@ -432,6 +472,36 @@
     
       <div>
           
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2018/11/19/《Visual-Question-Answering-with-Memory-Augmented-Networks》阅读笔记/">《Visual Question Answering with Memory-Augmented Networks》阅读笔记</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Zekang Li 的个人博客">Zekang Li</a></p>
+  <p><span>发布时间:</span>2018年11月19日 - 14:11</p>
+  <p><span>最后更新:</span>2018年11月20日 - 11:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/19/《Visual-Question-Answering-with-Memory-Augmented-Networks》阅读笔记/" title="《Visual Question Answering with Memory-Augmented Networks》阅读笔记">https://lizekang.github.io/2018/11/19/《Visual-Question-Answering-with-Memory-Augmented-Networks》阅读笔记/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lizekang.github.io/2018/11/19/《Visual-Question-Answering-with-Memory-Augmented-Networks》阅读笔记/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
 
       </div>
     
@@ -466,6 +536,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/VideoQA/" rel="tag"># VideoQA</a>
+          
+            <a href="/tags/Memory-Network/" rel="tag"># Memory Network</a>
+          
+        </div>
+      
 
       
       
@@ -475,14 +553,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/11/19/《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》阅读笔记/" rel="next" title="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记">
+                <i class="fa fa-chevron-left"></i> 《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/21/boosting详解/" rel="prev" title="boosting详解">
-                boosting详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/19/年度爆款BERT/" rel="prev" title="年度爆款BERT!">
+                年度爆款BERT! <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -664,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《Visual-Question-Answering-with-Memory-Augmented-Networks》"><span class="nav-number">1.</span> <span class="nav-text">《Visual Question Answering with Memory-Augmented Networks》</span></a></li></ol></div>
             
 
           </div>
@@ -854,6 +936,30 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 

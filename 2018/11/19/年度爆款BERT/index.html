@@ -108,17 +108,22 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="《BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding》阅读笔记BERT算是今年的一个爆款了，同一个模型，只微调就刷新了十一个记录，都有很大的提升…它的出现为之后NLP的发展打下了很好的基础下面来看论文中的做法 Related works论文中介绍了预训练的各种方法:  Feature-ba">
+<meta name="keywords" content="BERT,self attention,transformer">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://lizekang.github.io/2017/10/01/hello-world/index.html">
+<meta property="og:title" content="年度爆款BERT!">
+<meta property="og:url" content="https://lizekang.github.io/2018/11/19/年度爆款BERT/index.html">
 <meta property="og:site_name" content="Zekang Li&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="《BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding》阅读笔记BERT算是今年的一个爆款了，同一个模型，只微调就刷新了十一个记录，都有很大的提升…它的出现为之后NLP的发展打下了很好的基础下面来看论文中的做法 Related works论文中介绍了预训练的各种方法:  Feature-ba">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-19T07:42:04.352Z">
+<meta property="og:image" content="https://lizekang.github.io/images/bert1.png">
+<meta property="og:image" content="https://lizekang.github.io/images/bert2.png">
+<meta property="og:image" content="https://lizekang.github.io/images/bert3.png">
+<meta property="og:updated_time" content="2018-11-20T03:11:52.856Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="年度爆款BERT!">
+<meta name="twitter:description" content="《BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding》阅读笔记BERT算是今年的一个爆款了，同一个模型，只微调就刷新了十一个记录，都有很大的提升…它的出现为之后NLP的发展打下了很好的基础下面来看论文中的做法 Related works论文中介绍了预训练的各种方法:  Feature-ba">
+<meta name="twitter:image" content="https://lizekang.github.io/images/bert1.png">
 
 
 
@@ -127,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="https://lizekang.github.io/2017/10/01/hello-world/">
+  <link rel="canonical" href="https://lizekang.github.io/2018/11/19/年度爆款BERT/">
 
 
 
@@ -137,7 +142,7 @@
   };
 </script>
 
-  <title>Hello World | Zekang Li's Blog</title>
+  <title>年度爆款BERT! | Zekang Li's Blog</title>
   
 
 
@@ -316,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lizekang.github.io/2017/10/01/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://lizekang.github.io/2018/11/19/年度爆款BERT/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zekang Li">
@@ -333,7 +338,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">年度爆款BERT!
               
             
           </h1>
@@ -358,7 +363,7 @@
                 
               
 
-              <time title="创建时间：2017-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2017-10-01T00:00:00+08:00">2017-10-01</time>
+              <time title="创建时间：2018-11-19 17:37:23" itemprop="dateCreated datePublished" datetime="2018-11-19T17:37:23+08:00">2018-11-19</time>
             
 
             
@@ -375,11 +380,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-19 15:42:04" itemprop="dateModified" datetime="2018-11-19T15:42:04+08:00">2018-11-19</time>
+                <time title="修改时间：2018-11-20 11:11:52" itemprop="dateModified" datetime="2018-11-20T11:11:52+08:00">2018-11-20</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -408,15 +431,29 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h2 id="《BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding》阅读笔记"><a href="#《BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding》阅读笔记" class="headerlink" title="《BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding》阅读笔记"></a>《BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding》阅读笔记</h2><p>BERT算是今年的一个爆款了，同一个模型，只微调就刷新了十一个记录，都有很大的提升…<br>它的出现为之后NLP的发展打下了很好的基础<br>下面来看论文中的做法</p>
+<h3 id="Related-works"><a href="#Related-works" class="headerlink" title="Related works"></a>Related works</h3><p>论文中介绍了预训练的各种方法:</p>
+<ul>
+<li>Feature-based Approaches (ELMo)</li>
+<li>Fine-tuning Approaches (OpenAI GPT， BERT)</li>
+<li>Transfer Learning from Supervised Data<br><img src="/images/bert1.png" alt="image"><br>论文中介绍了BERT与其他各种预训练模型ELMo和OpenAI GPT的区别，ELMo使用了双向LSTM提取特征，属于feature-based方法。给downstream的任务生成features。OpenAI GPT只使用了left-to-right的Transformer，而token的right方向的信息是获取不到的。而BERT在所有层中都融合left-to-right和right-to-left的信息。</li>
+</ul>
+<h3 id="Input-Representations"><a href="#Input-Representations" class="headerlink" title="Input Representations"></a>Input Representations</h3><p><img src="/images/bert2.png" alt="image"><br>BERT简单粗暴的将句子拼接在一起（无论是单句还是句子对，连在一块就完事了），它的Input Representations 如图</p>
+<ul>
+<li>Token embedding 用了WordPiece embedding，这个方法是用来解决oov的word的，就是把一些单词拆成两个词，比如playing就可以拆成play和##ing，拆的时候就用贪心去搜索最少的token来覆盖所有的单词</li>
+<li>Segment embedding 区分一下句子一和二</li>
+<li>Position embedding 融入了位置信息，是通过模型学到的</li>
+<li>The input embeddings is the sum of the token embeddings, the segmentation embeddings and the position embeddings. 没错，就这么粗暴</li>
+</ul>
+<h3 id="Core-innovation-Points"><a href="#Core-innovation-Points" class="headerlink" title="Core innovation Points"></a>Core innovation Points</h3><h4 id="Task-1：-Masked-LM"><a href="#Task-1：-Masked-LM" class="headerlink" title="Task #1： Masked LM"></a>Task #1： Masked LM</h4><p>作者认为用单向模型或者把两个单向模型拼接起来不如直接用双向的模型。但是传统方法只能是单向训练。BERT没有使用传统的left-to-right和right-to-left的language model，提出了一种Masked Language Model</p>
+<p>随机屏蔽或替换一些单词，然后去预测这些单词，相当于完形填空…</p>
+<ul>
+<li>80%的概率将单词换为[mask]标记 , my dog is hairy → my dog is [MASK]</li>
+<li>10%的概率将单词换为字表中其他单词 , my dog is hairy → my dog is apple （可能是为了加噪声，防止过拟合） </li>
+<li>10%的概率不替换 , my dog is hairy → my dog is hairy （这个我猜可能是为了让模型学到正常理解方式，而非完型填空的理解方式）</li>
+</ul>
+<h4 id="Task-2：-Next-Sentence-Prediction"><a href="#Task-2：-Next-Sentence-Prediction" class="headerlink" title="Task #2： Next Sentence Prediction"></a>Task #2： Next Sentence Prediction</h4><p>输入一个句子对，来预测第二个句子是不是第一个句子的下一句，学习句子之间的逻辑关系</p>
+<h3 id="Fine-tuning-Procedure"><a href="#Fine-tuning-Procedure" class="headerlink" title="Fine-tuning Procedure"></a>Fine-tuning Procedure</h3><p><img src="/images/bert3.png" alt="image"><br>最后，一般自监督模型的泛化能力是比较强的，BERT从头到尾都是自监督<br>还有模型简直太大了，不是大公司根本训练不起…<br>不过用用预训练词向量还是可以的<a href="https://github.com/google-research/bert" target="_blank" rel="noopener">https://github.com/google-research/bert</a>   目前支持英文，中文（很难受，只有字），其他的语言（不清楚有哪些）<br>应该是有史以来最好的TPU推广广告吧…</p>
 
       
     </div>
@@ -432,6 +469,36 @@
     
       <div>
           
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2018/11/19/年度爆款BERT/">年度爆款BERT!</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Zekang Li 的个人博客">Zekang Li</a></p>
+  <p><span>发布时间:</span>2018年11月19日 - 17:11</p>
+  <p><span>最后更新:</span>2018年11月20日 - 11:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/19/年度爆款BERT/" title="年度爆款BERT!">https://lizekang.github.io/2018/11/19/年度爆款BERT/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lizekang.github.io/2018/11/19/年度爆款BERT/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
 
       </div>
     
@@ -466,6 +533,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/BERT/" rel="tag"># BERT</a>
+          
+            <a href="/tags/self-attention/" rel="tag"># self attention</a>
+          
+            <a href="/tags/transformer/" rel="tag"># transformer</a>
+          
+        </div>
+      
 
       
       
@@ -475,15 +552,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/11/19/《Visual-Question-Answering-with-Memory-Augmented-Networks》阅读笔记/" rel="next" title="《Visual Question Answering with Memory-Augmented Networks》阅读笔记">
+                <i class="fa fa-chevron-left"></i> 《Visual Question Answering with Memory-Augmented Networks》阅读笔记
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/21/boosting详解/" rel="prev" title="boosting详解">
-                boosting详解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -664,7 +741,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding》阅读笔记"><span class="nav-number">1.</span> <span class="nav-text">《BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding》阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Related-works"><span class="nav-number">1.1.</span> <span class="nav-text">Related works</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Representations"><span class="nav-number">1.2.</span> <span class="nav-text">Input Representations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Core-innovation-Points"><span class="nav-number">1.3.</span> <span class="nav-text">Core innovation Points</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Task-1：-Masked-LM"><span class="nav-number">1.3.1.</span> <span class="nav-text">Task #1： Masked LM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Task-2：-Next-Sentence-Prediction"><span class="nav-number">1.3.2.</span> <span class="nav-text">Task #2： Next Sentence Prediction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fine-tuning-Procedure"><span class="nav-number">1.4.</span> <span class="nav-text">Fine-tuning Procedure</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -854,6 +931,30 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 

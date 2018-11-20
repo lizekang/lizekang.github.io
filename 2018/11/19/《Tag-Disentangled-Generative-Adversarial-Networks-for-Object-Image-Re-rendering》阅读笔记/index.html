@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》 最近在研究多视角数据增强的方法，读到了这一篇，感觉思想很重要    这篇文章是IJCAI2017的最佳学生论文，简称TD-GAN，用于从单个输入图像中提取可分解的特征，并通过调整所学特征来重新渲染图像。   附上链接：https://ww">
+<meta name="keywords" content="GAN,Multi-view Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记">
+<meta property="og:url" content="https://lizekang.github.io/2018/11/19/《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》阅读笔记/index.html">
+<meta property="og:site_name" content="Zekang Li&#39;s Blog">
+<meta property="og:description" content="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》 最近在研究多视角数据增强的方法，读到了这一篇，感觉思想很重要    这篇文章是IJCAI2017的最佳学生论文，简称TD-GAN，用于从单个输入图像中提取可分解的特征，并通过调整所学特征来重新渲染图像。   附上链接：https://ww">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541148671827-ffdb82c2-f8d6-487a-86cf-10f6cf3c490c-image-resized.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149687254-f4de0d54-b59b-47c2-8f29-b6a274d170b2-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149697379-231aa761-1d37-4bab-81fc-72bcf7a553d7-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149707361-dd76a590-633c-43bd-956b-e942b30e0e5a-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149716175-4894adff-1e9b-4f2d-a7c3-67c8913ba5a2-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149737248-5050c717-05b0-4034-8859-5f32aab07d4d-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149745460-0f3c071d-e9cf-49f4-8c40-0b59ad8da7ef-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149754886-00ac8a97-4843-4ece-80fd-0dc3e84f9f9e-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149762921-706d4983-ec97-48e6-8696-f4f0dc1f67b5-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149883166-db41c557-2d34-4785-998d-542aa2ce737c-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149892729-14ba550e-772a-445c-8ceb-42dae0d8ff58-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149948275-8965ff18-c92b-4159-9be3-0c4ea99a3e43-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149958343-d5d2357b-9f08-48a8-9c50-b1f27cfd6626-image.png">
+<meta property="og:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541149977353-7e7fc577-811b-49d5-bc14-14ac3fc81533-image.png">
+<meta property="og:updated_time" content="2018-11-20T03:12:03.489Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记">
+<meta name="twitter:description" content="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》 最近在研究多视角数据增强的方法，读到了这一篇，感觉思想很重要    这篇文章是IJCAI2017的最佳学生论文，简称TD-GAN，用于从单个输入图像中提取可分解的特征，并通过调整所学特征来重新渲染图像。   附上链接：https://ww">
+<meta name="twitter:image" content="https://bbs.dian.org.cn/assets/uploads/files/1541148671827-ffdb82c2-f8d6-487a-86cf-10f6cf3c490c-image-resized.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Zekang Li's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://lizekang.github.io/2018/11/19/《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》阅读笔记/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记 | Zekang Li's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zekang Li's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+    <a href="/sitemap.xml" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lizekang.github.io/2018/11/19/《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》阅读笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zekang Li">
+      <meta itemprop="description" content="Stay hungry, stay foolish.">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zekang Li's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-19 14:48:00" itemprop="dateCreated datePublished" datetime="2018-11-19T14:48:00+08:00">2018-11-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-20 11:12:03" itemprop="dateModified" datetime="2018-11-20T11:12:03+08:00">2018-11-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》"><a href="#《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》" class="headerlink" title="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》"></a>《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》</h1><blockquote>
+<p>最近在研究多视角数据增强的方法，读到了这一篇，感觉思想很重要 </p>
+</blockquote>
+<blockquote>
+<p>这篇文章是IJCAI2017的最佳学生论文，简称TD-GAN，用于从单个输入图像中提取可分解的特征，并通过调整所学特征来重新渲染图像。</p>
+</blockquote>
+<blockquote>
+<p>附上链接：<a href="https://www.ijcai.org/proceedings/2017/0404.pdf" target="_blank" rel="noopener">https://www.ijcai.org/proceedings/2017/0404.pdf</a> </p>
+</blockquote>
+<blockquote>
+<p>目前我复现了一部分，还没写完，<a href="https://github.com/lizekang/TD-GAN" target="_blank" rel="noopener">https://github.com/lizekang/TD-GAN</a></p>
+</blockquote>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a><strong>Abstract</strong></h2><p>本文提出了一种全新的神经网络框架，标签分解生成对抗网络(Tag Disentangled Generative Adversarial Networks, TDGAN)，用于进行目标图像的再次渲染(Re-rendering)。给定目标图像作为输入，该网络(TDGAN)即可根据指定要求修改图像内容，并生成符合描述的图像。例如，改变输入图像的观察角度，光照条件，人脸表情等等。和以往工作不同，通过利用图像与其标签的对应关系，即标签是图像分解表征(disentangled representations, DR)的Embedding，我们训练分解网络以提取输入图像的分解表征(DR)。生成网络根据这些表征以及新的标签重新渲染图像。</p>
+<h2 id="Network-Architecture"><a href="#Network-Architecture" class="headerlink" title="Network Architecture"></a><strong>Network Architecture</strong></h2><p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541148671827-ffdb82c2-f8d6-487a-86cf-10f6cf3c490c-image-resized.png" alt="0_1541148666873_ffdb82c2-f8d6-487a-86cf-10f6cf3c490c-image.png"> </p>
+<p>文章中使用了四个网络，a disentangling network, a generative network, a tag mapping net, and a discriminative network。</p>
+<ul>
+<li><p><strong>Disentangling Network</strong></p>
+<p>  用来分解图片特征的网络，将图片的表征分解成几个独立的domain，比如光照，表情，viewpoint等。</p>
+</li>
+<li><p><strong>Tag Mapping Net</strong></p>
+<p>  用来将不同Domain的标签mapping到Disentangling Network分解出来的对应domain上，之后就可以使用Tag Mapping Net生成的特征来替换掉Disentangling Network产生的特征了。</p>
+</li>
+<li><p><strong>Generative Network</strong></p>
+<p>  生成器，根据重组后的特征生成图像</p>
+</li>
+<li><p><strong>Discriminative Network</strong></p>
+<p>  辨别器，辨别生成的图像真/假</p>
+</li>
+</ul>
+<p>看完网络结构感觉这篇文章其实思路很简单，就是替换feature罢了，但是我觉得真正困难的地方是这样一个比较复杂的网络该怎么去训练。果不其然，作者用大篇幅介绍了如何训练以及参数设置，可以说是很良心了。</p>
+<h2 id="网络训练策略"><a href="#网络训练策略" class="headerlink" title="网络训练策略"></a><strong>网络训练策略</strong></h2><p>直接上公式了，对应着图看着公式基本能明白是干什么的（带*的代表冻结该网络）</p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149687254-f4de0d54-b59b-47c2-8f29-b6a274d170b2-image.png" alt="0_1541149682977_f4de0d54-b59b-47c2-8f29-b6a274d170b2-image.png"> </p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149697379-231aa761-1d37-4bab-81fc-72bcf7a553d7-image.png" alt="0_1541149693295_231aa761-1d37-4bab-81fc-72bcf7a553d7-image.png"> </p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149707361-dd76a590-633c-43bd-956b-e942b30e0e5a-image.png" alt="0_1541149703259_dd76a590-633c-43bd-956b-e942b30e0e5a-image.png"> </p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149716175-4894adff-1e9b-4f2d-a7c3-67c8913ba5a2-image.png" alt="0_1541149712084_4894adff-1e9b-4f2d-a7c3-67c8913ba5a2-image.png"> </p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149737248-5050c717-05b0-4034-8859-5f32aab07d4d-image.png" alt="0_1541149733132_5050c717-05b0-4034-8859-5f32aab07d4d-image.png"> </p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149745460-0f3c071d-e9cf-49f4-8c40-0b59ad8da7ef-image.png" alt="0_1541149741368_0f3c071d-e9cf-49f4-8c40-0b59ad8da7ef-image.png"> </p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149754886-00ac8a97-4843-4ece-80fd-0dc3e84f9f9e-image.png" alt="0_1541149750800_00ac8a97-4843-4ece-80fd-0dc3e84f9f9e-image.png"> </p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149762921-706d4983-ec97-48e6-8696-f4f0dc1f67b5-image.png" alt="0_1541149758827_706d4983-ec97-48e6-8696-f4f0dc1f67b5-image.png"> </p>
+<h2 id="网络参数设置"><a href="#网络参数设置" class="headerlink" title="网络参数设置"></a><strong>网络参数设置</strong></h2><p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149883166-db41c557-2d34-4785-998d-542aa2ce737c-image.png" alt="0_1541149878814_db41c557-2d34-4785-998d-542aa2ce737c-image.png"> </p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149892729-14ba550e-772a-445c-8ceb-42dae0d8ff58-image.png" alt="0_1541149888581_14ba550e-772a-445c-8ceb-42dae0d8ff58-image.png"> </p>
+<h2 id="惊艳的实验结果"><a href="#惊艳的实验结果" class="headerlink" title="惊艳的实验结果"></a><strong>惊艳的实验结果</strong></h2><p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149948275-8965ff18-c92b-4159-9be3-0c4ea99a3e43-image.png" alt="0_1541149944111_8965ff18-c92b-4159-9be3-0c4ea99a3e43-image.png"> </p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149958343-d5d2357b-9f08-48a8-9c50-b1f27cfd6626-image.png" alt="0_1541149954104_d5d2357b-9f08-48a8-9c50-b1f27cfd6626-image.png"> </p>
+<p><img src="https://bbs.dian.org.cn/assets/uploads/files/1541149977353-7e7fc577-811b-49d5-bc14-14ac3fc81533-image.png" alt="0_1541149973197_7e7fc577-811b-49d5-bc14-14ac3fc81533-image.png"></p>
+<h2 id="一点思考"><a href="#一点思考" class="headerlink" title="一点思考"></a><strong>一点思考</strong></h2><p>转自：<a href="http://www.sohu.com/a/257772655_473283" target="_blank" rel="noopener">http://www.sohu.com/a/257772655_473283</a></p>
+<p>多视角学习：面向决策策略的“盲人摸象”</p>
+<p>大家都知道盲人摸象的故事，实际上我们做决策的时候，跟盲人是一样的，因为我们所获取到的信息也是不完整的。那么我们在做觉得时候，也就是根据已有的信息作出的最优策略。因此，对于同样的事情，每一个人所作出的决定可能也不相同。</p>
+<p>多视角学习对于现今的智能系统非常重要，这是因为智能系统中都安装了大量的传感器，比如，现在的无人车安装了激光雷达、毫米波雷达、摄像机、IMU等等。每个传感器都只能够感知环境中的部分信息，那么我们就需要把不同的传感的信息融合起来，帮助我们做最后的决策。</p>
+<p>假设存在一个oracle space，那么每个传感器就可以被建模成对oracle space的一个线性或者非线形投影。如果我们有大量的传感器，那么我们就能够获取大量的投影信息。我们可以证明，如果说我们有足够多的不同的投影信息，我们就能够以非常高的概率去重构这个oracle space。有了这个oracle space，我们就可以有效的做决策了。</p>
+<p>请大家看一下最左边的这张图像。你第一眼看到了什么？大多说人一定会说是船。然后你还会注意到船上有人。对不对？这个现象提示我们，这样的顺序信息对于我们进行多标签学习会非常有帮助。通过增强学习，我们可以有效的学习这个顺序，来提升增强学习的效率。</p>
+<p>我们今天所面临的学习问题可能是这样的一个情况：训练数据和测试数据来自不同的传感器或者信息域。这就是domain generalization要解决的问题。因为训练数据和测试数据来自不同的域，我们就需要找寻一些特征：这些特征在训练数据上和测试数据上，对于完成我们的规定任务来说都是有效的。</p>
+<p>人可以很轻松的做到这一点：我儿子3岁的时候，我给他看过长颈鹿的卡通画片。当我带他去动物园的时候，他可能很轻松的认出真正的长颈鹿。可是在这之前，他从来没有见过实际场景中的长颈鹿。我们当然希望计算机也具备类似的能力。这里我们利用GAN网络（对抗生成网络）能够有效地学习这样的不变特征。</p>
+<p>我们提出了一个端到端的条件对抗域自适应深度学习模型来学习域不变的特征，该模型同时衡量分布P(Y)和条件概率分布P(X|Y)的不变性。该网络框架包括了四个部分。第一部分AlexNet用来学习域不变的特征。第二部分是图像分类网络，用来保证学习的特征具有良好的类别区分性。</p>
+<p>特征的域不变性质利用类别先验归一化域分类网络和类别条件域分类网络保证。其中类别先验归一化域分类网络用来匹配不同域的类别先验归一化分布，该网络的主要目的是消除不同域之间的变化。其次，类别条件域分类网络用来保证对于每一类的分布匹配。这样就能够保证不同域的联合概率分布是匹配的。在不同标准数据集上得到的实验结果证明了我们方法的有效性，并且要比现有方法有显著的提高。</p>
+<p>最近大家开始关注学习的可解释性。我们用GAN网络可以学到特征来生成我们需要的数据。可是这些特征的含义是什么？我们并不清楚。</p>
+<p>通过模仿人类理解世界的方式，我们希望计算机能够从这个复杂的世界中学习到抽象的概念，并根据这些概念创造新的东西。因此，我们需要计算机能够从真实世界图像中提取到可分解的特征，例如照片中人物的身份，拍摄角度，光照条件等等。这个就是tag disentanglement。有了可分解的特征，我们也能很好的解释我们学习到的特征到底是什么物理含义。</p>
+<p>我们提出了一个新的框架（TD-GAN），用于从单个输入图像中提取可分解的特征，并通过调整所学特征来重新渲染图像。从某种程度上说，TD-GAN提供了一个可以理解现实世界中图像的深度学习框架。</p>
+<p>网络所学习到的可分解的特征，实际上对应于图像中所描述主体的不同属性。与人类理解世界的方式相似，学习可分解的特征有助于机器解释并重构现实世界的图像。因此，TD-GAN能够根据用户指定的信息合成高质量的输出图像。</p>
+<p>TD-GAN可应用于（1）数据增强，即通过合成新的图像以用于其他深度学习算法的训练与测试，（2）生成给定对象连续姿态的图像，以用于三维模型重建，以及（3）通过解析，概括来增强现有创作，并创造充满想象力的新绘画。</p>
+<h2 id="多视角数据增强"><a href="#多视角数据增强" class="headerlink" title="多视角数据增强"></a><strong>多视角数据增强</strong></h2><p>我们目前做的多视角图片数据增强和TD-GAN又有一些不同。TD-GAN仅仅是在chairs这个dataset上产生了很好的效果，不过，试想，当一个物体较为复杂的时候，不可能根据一张图片生成这么完美的图像，那我们怎样产生多视角图像呢？</p>
+<p>这恰恰是我们正在研究的内容，我们在探究一种让网络学会融合各视角的图像，如何使网络将各视角的图像组合起来，在“大脑”中构思出这个物体的“3d模型”。这其实是多视角学习，多模态学习很关键的一步。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+          
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2018/11/19/《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》阅读笔记/">《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Zekang Li 的个人博客">Zekang Li</a></p>
+  <p><span>发布时间:</span>2018年11月19日 - 14:11</p>
+  <p><span>最后更新:</span>2018年11月20日 - 11:11</p>
+  <p><span>原始链接:</span><a href="/2018/11/19/《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》阅读笔记/" title="《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》阅读笔记">https://lizekang.github.io/2018/11/19/《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》阅读笔记/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://lizekang.github.io/2018/11/19/《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》阅读笔记/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>很高兴我的文章对你有帮助，请我喝杯咖啡吧！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Zekang Li 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GAN/" rel="tag"># GAN</a>
+          
+            <a href="/tags/Multi-view-Learning/" rel="tag"># Multi-view Learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/21/boosting详解/" rel="next" title="boosting详解">
+                <i class="fa fa-chevron-left"></i> boosting详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/19/《Visual-Question-Answering-with-Memory-Augmented-Networks》阅读笔记/" rel="prev" title="《Visual Question Answering with Memory-Augmented Networks》阅读笔记">
+                《Visual Question Answering with Memory-Augmented Networks》阅读笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Zekang Li">
+            
+              <p class="site-author-name" itemprop="name">Zekang Li</p>
+              <p class="site-description motion-element" itemprop="description">Stay hungry, stay foolish.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/lizekang" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zekangli97@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《Tag-Disentangled-Generative-Adversarial-Networks-for-Object-Image-Re-rendering》"><span class="nav-number">1.</span> <span class="nav-text">《Tag Disentangled Generative Adversarial Networks for Object Image Re-rendering》</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-Architecture"><span class="nav-number">1.2.</span> <span class="nav-text">Network Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络训练策略"><span class="nav-number">1.3.</span> <span class="nav-text">网络训练策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络参数设置"><span class="nav-number">1.4.</span> <span class="nav-text">网络参数设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#惊艳的实验结果"><span class="nav-number">1.5.</span> <span class="nav-text">惊艳的实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一点思考"><span class="nav-number">1.6.</span> <span class="nav-text">一点思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多视角数据增强"><span class="nav-number">1.7.</span> <span class="nav-text">多视角数据增强</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright"> &copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zekang Li</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
